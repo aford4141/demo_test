@@ -48,6 +48,10 @@ programs, not just drawings.
 - The drawing **templates** ("Brad files") were started in a separate chat and are not
   yet in this folder. **Next assistant: ask Alan for them and add them here** under a
   `templates/` subfolder so everything lives in one place.
+- The Panel Business folder on Google Drive already holds a **library of real drawing
+  packages** (FMM3013 Package, FMM3020, FMM3021, FMM3050, FMM3060, FPJ-0001 through
+  FPJ-0003). Only FMM3013 has been decoded so far — the others are additional
+  reference material and future decode targets.
 - Nothing from the drawing pipeline is built yet — `05_drawing_pipeline_plan.md` has
   the first concrete build step.
 
