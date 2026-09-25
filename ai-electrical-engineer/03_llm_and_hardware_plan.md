@@ -66,17 +66,17 @@ Frontier LLM (the engineer brain)
   - asks clarifying questions
   - decides circuits, sizes wire/breakers
   - assigns PLC I/O
-  - outputs machine description as JSON
+  - outputs machine description as structured data
       │
       ▼
 Mac Mini (the drafting department, plain code)
-  - Python renderer (ezdxf) + title-block templates
+  - FirstPass Builder: drawings, O&M manual, costing
+  - PLC Program Builder: tested Studio 5000 program (L5X)
   - parts database lookup (internal # → catalog # → price)
-  - wire numbering + cross-reference generator
-  - outputs DXF + PDF package
+      │
+      ▼
+Windows PC (Studio 5000): import, verify, download to a bench PLC
       │
       ▼
 Human review (owner / engineer of record) → issue to customer
 ```
-
-Details and build steps for the bottom half are in `05_drawing_pipeline_plan.md`.
