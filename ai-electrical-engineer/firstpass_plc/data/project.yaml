@@ -1,0 +1,41 @@
+# FirstPass Systems - FMM3013 Align Conveyor
+# Single source of truth. Every drawing sheet, the O&M manual and the cost
+# model are generated from this directory. Nothing is typed twice.
+project:      FMM3013
+title:        Align Conveyor
+customer:     Cardinal IG
+oem:          FirstPass Systems
+engineer:     A. Ford
+revision:     A
+rev_desc:     Issued for Review
+date:         08-27-2026
+drawing:      FP010021
+serial:       2608270001
+
+supply:
+  volts:      230
+  phase:      3
+  hertz:      60
+  wire:       4W + GND
+  system:     Solidly grounded wye
+  fla:        115
+  kva:        45.8
+  largest:    15.1
+  sccr:       10
+  afc_note:   Available fault current at point of connection to be confirmed by customer electrician. 10 kA SCCR assumed pending that figure.
+
+standards:
+  - IEEE Std 315 / IEC 60617 graphic symbols for electrical diagrams
+  - NFPA 70 (NEC) conductor ampacity, overcurrent protection, grounding
+  - NFPA 79 (2024) Electrical Standard for Industrial Machinery
+  - UL 508A Industrial Control Panels - listed panel, SCCR marked
+  - NFPA 70 (NEC) Article 670 for supply conductor sizing
+  - ANSI/RIA + ISO 13849-1 PL d Cat 3 for the safety function
+
+control:
+  plc:        Allen-Bradley CompactLogix 5069-L306ER
+  plc_alt:    Micro870 2080-L70E-24QBB if the customer has no ControlLogix standard
+  hmi:        PanelView Plus 7 Standard 10 in
+  network:    EtherNet/IP, star, managed switch in EC1
+  dc:         24 VDC, 240 W, class 2 limited branches
+  safety_ctl: Keyence GC-S1R safety controller

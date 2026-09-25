@@ -1,0 +1,62 @@
+tag,type,hmi_access,reference,description
+HMI_AutoStart,BOOL,write,{[PLC]Program:FMM3013.HMI_AutoStart},HMI: start automatic
+HMI_AutoStop,BOOL,write,{[PLC]Program:FMM3013.HMI_AutoStop},HMI: cycle stop - runs until the last part clears
+HMI_ConvSpeedPct,REAL,write,{[PLC]Program:FMM3013.HMI_ConvSpeedPct},"HMI: conveyor speed in automatic, %"
+HMI_FocalGoToSP,BOOL,write,{[PLC]Program:FMM3013.HMI_FocalGoToSP},HMI: move focal lift to its setpoint
+HMI_FocalHeightSP,REAL,write,{[PLC]Program:FMM3013.HMI_FocalHeightSP},"HMI: focal lift height setpoint, mm"
+HMI_FocalJogDown,BOOL,write,{[PLC]Program:FMM3013.HMI_FocalJogDown},"HMI: jog focal lift down (manual only, hold to run)"
+HMI_FocalJogUp,BOOL,write,{[PLC]Program:FMM3013.HMI_FocalJogUp},"HMI: jog focal lift up (manual only, hold to run)"
+HMI_JogConv,BOOL,write,{[PLC]Program:FMM3013.HMI_JogConv},"HMI: jog conveyor (manual only, hold to run)"
+HMI_JogRecip,BOOL,write,{[PLC]Program:FMM3013.HMI_JogRecip},"HMI: jog reciprocator (manual only, hold to run)"
+HMI_LampsOff,BOOL,write,{[PLC]Program:FMM3013.HMI_LampsOff},HMI: lamps off (starts cooldown)
+HMI_LampsOn,BOOL,write,{[PLC]Program:FMM3013.HMI_LampsOn},HMI: strike lamps
+HMI_LowerIntensityPct,REAL,write,{[PLC]Program:FMM3013.HMI_LowerIntensityPct},"HMI: lower row lamp intensity, %"
+HMI_Manual_Conv,BOOL,write,{[PLC]Program:FMM3013.HMI_Manual_Conv},HMI: conveyor in manual (maintenance)
+HMI_Manual_Focal,BOOL,write,{[PLC]Program:FMM3013.HMI_Manual_Focal},HMI: focal lift in manual (maintenance)
+HMI_Manual_Lamps,BOOL,write,{[PLC]Program:FMM3013.HMI_Manual_Lamps},HMI: lamps in manual (maintenance)
+HMI_Manual_Recip,BOOL,write,{[PLC]Program:FMM3013.HMI_Manual_Recip},HMI: reciprocator in manual (maintenance)
+HMI_PartsCleared,BOOL,write,{[PLC]Program:FMM3013.HMI_PartsCleared},HMI: operator confirms the machine is clear of parts
+HMI_RecipSpeedPct,REAL,write,{[PLC]Program:FMM3013.HMI_RecipSpeedPct},"HMI: reciprocator speed in automatic, %"
+HMI_ResetFaults,BOOL,write,{[PLC]Program:FMM3013.HMI_ResetFaults},HMI: reset alarms and re-initialise after a safety stop
+HMI_UpperIntensityPct,REAL,write,{[PLC]Program:FMM3013.HMI_UpperIntensityPct},"HMI: upper row lamp intensity, %"
+AllLampsOn,BOOL,read,{[PLC]Program:FMM3013.AllLampsOn},Every module reports lamp-is-on and every row is healthy
+AnyManual,BOOL,read,{[PLC]Program:FMM3013.AnyManual},At least one subsystem is in manual
+AutoBlockReason,DINT,read,{[PLC]Program:FMM3013.AutoBlockReason},"Why automatic is refused: 0 none, 1 safety/re-init, 2 alarm, 3 subsystem in manual, 4 focal lift not in position, 5 lamps not ready, 6 part left in machine"
+AutoPermissive,BOOL,read,{[PLC]Program:FMM3013.AutoPermissive},All conditions for automatic are met
+AutoRequest,BOOL,read,{[PLC]Program:FMM3013.AutoRequest},"Automatic requested (horn warning, then running)"
+AutoRunning,BOOL,read,{[PLC]Program:FMM3013.AutoRunning},Automatic running - conveyor and reciprocator moving
+CooldownActive,BOOL,read,{[PLC]Program:FMM3013.CooldownActive},Lamp cooldown running; re-strike blocked
+CycleStopping,BOOL,read,{[PLC]Program:FMM3013.CycleStopping},Cycle stop requested; running until the last part exits
+Faulted,BOOL,read,{[PLC]Program:FMM3013.Faulted},At least one alarm is active or unacknowledged
+FocalFault,BOOL,read,{[PLC]Program:FMM3013.FocalFault},A focal lift alarm is active
+FocalInPosition,BOOL,read,{[PLC]Program:FMM3013.FocalInPosition},Focal lift at setpoint and between the limit photoeyes
+FocalMoveDown,BOOL,read,{[PLC]Program:FMM3013.FocalMoveDown},Focal lift direction command: down. Map to the drive once F4 is decided
+FocalMoveUp,BOOL,read,{[PLC]Program:FMM3013.FocalMoveUp},Focal lift direction command: up. Map to the drive once F4 is decided
+FocalPositioning,BOOL,read,{[PLC]Program:FMM3013.FocalPositioning},Focal lift moving to its setpoint
+LampsCmd,BOOL,read,{[PLC]Program:FMM3013.LampsCmd},Lamps commanded on
+LampsReady,BOOL,read,{[PLC]Program:FMM3013.LampsReady},Lamps on and warmed up
+PartsCheckRequired,BOOL,read,{[PLC]Program:FMM3013.PartsCheckRequired},A part may be left inside after a safety stop; confirm on the HMI
+PartsInMachine,DINT,read,{[PLC]Program:FMM3013.PartsInMachine},Parts between the entry and exit photoeyes
+ReinitRequired,BOOL,read,{[PLC]Program:FMM3013.ReinitRequired},A safety stop happened; re-initialise from the HMI
+SafetyLost,BOOL,read,{[PLC]Program:FMM3013.SafetyLost},One-scan pulse when the safety circuit drops
+SafetyOK,BOOL,read,{[PLC]Program:FMM3013.SafetyOK},"Safety system healthy (controller output on, safety relay picked up)"
+ALM_ConvNoMotion,BOOL,read,{[PLC]Program:FMM3013.ALM_ConvNoMotion},Conveyor commanded to run but the belt is not moving
+ALM_FocalLimitSensors,BOOL,read,{[PLC]Program:FMM3013.ALM_FocalLimitSensors},Both focal limit photoeyes on at once: sensor fault
+ALM_FocalSetpointRange,BOOL,read,{[PLC]Program:FMM3013.ALM_FocalSetpointRange},Focal setpoint is beyond a limit photoeye
+ALM_FocalTimeout,BOOL,read,{[PLC]Program:FMM3013.ALM_FocalTimeout},Focal lift did not reach position in time
+ALM_Jam,BOOL,read,{[PLC]Program:FMM3013.ALM_Jam},Part jam: nothing has left the machine in time
+ALM_LowerRowHealth,BOOL,read,{[PLC]Program:FMM3013.ALM_LowerRowHealth},Lower row lamp system not healthy
+ALM_SafetyStop,BOOL,read,{[PLC]Program:FMM3013.ALM_SafetyStop},"Safety stop: E-stop pressed, door open or safety fault"
+ALM_UV1_1_LampLost,BOOL,read,{[PLC]Program:FMM3013.ALM_UV1_1_LampLost},UV1-1 arc lost while enabled
+ALM_UV1_1_StrikeFail,BOOL,read,{[PLC]Program:FMM3013.ALM_UV1_1_StrikeFail},UV1-1 failed to strike
+ALM_UV1_2_LampLost,BOOL,read,{[PLC]Program:FMM3013.ALM_UV1_2_LampLost},UV1-2 arc lost while enabled
+ALM_UV1_2_StrikeFail,BOOL,read,{[PLC]Program:FMM3013.ALM_UV1_2_StrikeFail},UV1-2 failed to strike
+ALM_UV1_3_LampLost,BOOL,read,{[PLC]Program:FMM3013.ALM_UV1_3_LampLost},UV1-3 arc lost while enabled
+ALM_UV1_3_StrikeFail,BOOL,read,{[PLC]Program:FMM3013.ALM_UV1_3_StrikeFail},UV1-3 failed to strike
+ALM_UV2_1_LampLost,BOOL,read,{[PLC]Program:FMM3013.ALM_UV2_1_LampLost},UV2-1 arc lost while enabled
+ALM_UV2_1_StrikeFail,BOOL,read,{[PLC]Program:FMM3013.ALM_UV2_1_StrikeFail},UV2-1 failed to strike
+ALM_UV2_2_LampLost,BOOL,read,{[PLC]Program:FMM3013.ALM_UV2_2_LampLost},UV2-2 arc lost while enabled
+ALM_UV2_2_StrikeFail,BOOL,read,{[PLC]Program:FMM3013.ALM_UV2_2_StrikeFail},UV2-2 failed to strike
+ALM_UV2_3_LampLost,BOOL,read,{[PLC]Program:FMM3013.ALM_UV2_3_LampLost},UV2-3 arc lost while enabled
+ALM_UV2_3_StrikeFail,BOOL,read,{[PLC]Program:FMM3013.ALM_UV2_3_StrikeFail},UV2-3 failed to strike
+ALM_UpperRowHealth,BOOL,read,{[PLC]Program:FMM3013.ALM_UpperRowHealth},Upper row lamp system not healthy

@@ -1,0 +1,5 @@
+tag,motor,hp,kw,rpm,motor_fla,vfd_model,vfd_size,brake,feedback,sheet
+M-CONV,Conveyor belt drive,3.0,2.2,1750,9.6,PowerFlex 525 25B-B012N104,3 HP 230V,no,Encoder 1024 PPR,024
+M-FOCA,Focal lift screw jack A,1.0,0.75,1750,3.6,PowerFlex 525 25B-B5P0N104,1 HP 230V,yes,Limit photoeyes,025
+M-FOCB,Focal lift screw jack B,1.0,0.75,1750,3.6,PowerFlex 525 25B-B5P0N104,1 HP 230V,yes,Limit photoeyes,025
+M-RECIP,Reciprocator carriage,2.0,1.5,1750,6.8,PowerFlex 525 25B-B8P0N104,2 HP 230V,no,Prox home,026

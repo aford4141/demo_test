@@ -1,0 +1,7 @@
+tag,row,role,model,arc_in,w_per_in,kw,ballast,cooling,sheet
+UV1-1,Upper,Master,LightHammer 10 Mk II,10,600,6.0,Electronic P300MT,Blower + exhaust,022
+UV1-2,Upper,Slave 1,LightHammer 10 Mk II,10,600,6.0,Electronic P300MT,Blower + exhaust,022
+UV1-3,Upper,Slave 2,LightHammer 10 Mk II,10,600,6.0,Electronic P300MT,Blower + exhaust,022
+UV2-1,Lower,Master,LightHammer 10 Mk II,10,600,6.0,Electronic P300MT,Blower + exhaust,023
+UV2-2,Lower,Slave 1,LightHammer 10 Mk II,10,600,6.0,Electronic P300MT,Blower + exhaust,023
+UV2-3,Lower,Slave 2,LightHammer 10 Mk II,10,600,6.0,Electronic P300MT,Blower + exhaust,023
