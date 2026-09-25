@@ -1,5 +1,13 @@
 # Drawing Pipeline Plan — How drawings get generated
 
+> **Status, September 25, 2026: this pipeline already exists.** It is the **FirstPass
+> Builder**, built in another chat. It lives in Google Drive under *Panel Business / FMM3013
+> Package* (`data/` and `build/`, with `MANIFEST.txt`). It renders the FMM3013 drawing package
+> FP010021 (31 sheets), the O&M manual and the cost model from one `data/` folder. Verify gates
+> stop the build on errors. Read its *FirstPass Builder Roadmap.pdf* for what comes next. This
+> document keeps the principle and the JSON idea below. Sections 2 and 3 are updated; where
+> this plan and FirstPass differ, FirstPass wins.
+
 **Principle (settled decision):** the LLM never draws. The LLM produces structured
 data; a deterministic Python renderer produces the sheets. This is how we get
 AUV-quality packages (`source_drawings/`) with near-zero manual drafting.
@@ -48,25 +56,24 @@ leaves a sheet gets a "from (xxxx)/to (xxxx)" cross-reference.
   PLC point, terminal), BOM table.
 - Runs on the Mac Mini. No AI involved — same input always gives the same sheet.
 
-## 2. First build step (do this next)
+## 2. What exists and what to build next
 
-Build `render_sheet.py`, a script that:
-
-1. Reads a JSON file with a title block + one power-distribution circuit
-   (~the content of FMM3013 sheet 020: 3-phase incoming, breaker, distribution block).
-2. Outputs `sheet_020.dxf` and `sheet_020.pdf` with numbered ladder lines,
-   wire numbers, device tags, and the title block.
-3. Success = put it next to the real AUV sheet 020 and it reads the same way.
-
-That one script proves the whole architecture end to end. After that: symbol
-library, multi-sheet packages, cross-reference generator, BOM table generator.
+- **Drawings:** done in FirstPass (`build/gen_drawings.py`, `sheet.py`, `schem.py`, `io_sheet.py`).
+  FirstPass uses CSV/YAML job data (`io.csv`, `loads.csv`, `drives.csv`, `lamps.csv`,
+  `safety.csv`, `panels.csv`, `bom.csv`, `project.yaml`) rather than the single JSON file
+  sketched above. The idea is the same.
+- **PLC program:** done in `firstpass_plc/` (this repository), generated from the same FirstPass
+  data. See `firstpass_plc/README.md`.
+- **Next, per the FirstPass roadmap:** seed the parts library from a real quote; DXF footprints
+  for the panel layout sheet 090; terminal strip sheet and coil cross-references; thermal, fit
+  and SCCR rules.
 
 ## 3. The "Brad files"
 
-Drawing templates were started with another AI chat (called the Brad files).
-They are **not in this folder yet**. Next step for whoever reads this: get them
-from Alan, put them in `templates/` here, and reconcile them with the JSON schema
-above so there is one single format.
+*Brads Operation and Maintenance Manual.pdf* is in Google Drive under *Panel Business*. The
+FirstPass reference material is in *FMM3013 Package / reference*: *AUV Drafting Standard
+(measured from 300dpi scan)* and *AUV Terminology and Convention Reference*. The FirstPass
+drawings follow those conventions.
 
 ## 4. Parts database (feeds the BOMs)
 

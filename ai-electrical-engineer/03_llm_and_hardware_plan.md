@@ -76,7 +76,7 @@ Mac Mini (the drafting department, plain code)
   - outputs DXF + PDF package
       │
       ▼
-Human review (Alan) → issue to customer
+Human review (owner / engineer of record) → issue to customer
 ```
 
 Details and build steps for the bottom half are in `05_drawing_pipeline_plan.md`.

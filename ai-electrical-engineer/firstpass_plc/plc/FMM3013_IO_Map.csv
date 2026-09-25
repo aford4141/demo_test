@@ -1,0 +1,42 @@
+address,module,slot,module_channel,plc_tag,device_tag,description,wire,terminal,panel,sheet,status
+I:0/00,5069-IB16,1,Local:1:I.Pt00.Data,PRS7001,PRS7001,Incoming Part Photoeye,70011,TS1-1,EC1,070,live
+I:0/01,5069-IB16,1,Local:1:I.Pt01.Data,PRS7002,PRS7002,Outgoing Part Photoeye,70021,TS1-2,EC1,070,live
+I:0/02,5069-IB16,1,Local:1:I.Pt02.Data,CR3202_I,CR3202,Upper Row Master Lamp Is On,70031,TS2-1,EC2,070,live
+I:0/03,5069-IB16,1,Local:1:I.Pt03.Data,CR3204_I,CR3204,Upper Row Slave 1 Lamp Is On,70041,TS2-2,EC2,070,live
+I:0/04,5069-IB16,1,Local:1:I.Pt04.Data,CR3205_I,CR3205,Upper Row Slave 2 Lamp Is On,70051,TS2-3,EC2,070,live
+I:0/05,5069-IB16,1,Local:1:I.Pt05.Data,CR3201,CR3201,Upper Row System Health,70061,TS2-4,EC2,070,live
+I:0/06,5069-IB16,1,Local:1:I.Pt06.Data,,SPARE06,Spare,70071,TS1-3,EC1,070,spare
+I:0/07,5069-IB16,1,Local:1:I.Pt07.Data,,SPARE07,Spare,70081,TS1-4,EC1,070,spare
+I:0/08,5069-IB16,1,Local:1:I.Pt08.Data,CR3112,CR3112,Safety Relay 1 Monitor,70091,TS4-1,EC4,070,live
+I:0/09,5069-IB16,1,Local:1:I.Pt09.Data,GC_S1R,GC-S1R,Safety Controller Healthy,70101,TS4-2,EC4,070,live
+I:0/10,5069-IB16,1,Local:1:I.Pt10.Data,PRS7012,PRS7012,Focal Lift High Limit Photoeye,70111,TS4-3,EC4,070,live
+I:0/11,5069-IB16,1,Local:1:I.Pt11.Data,PRS7013,PRS7013,Focal Lift Low Limit Photoeye,70121,TS4-4,EC4,070,live
+I:0/12,5069-IB16,1,Local:1:I.Pt12.Data,CR3208_I,CR3208,Lower Row Master Lamp Is On,70131,TS3-1,EC3,070,live
+I:0/13,5069-IB16,1,Local:1:I.Pt13.Data,CR3210_I,CR3210,Lower Row Slave 1 Lamp Is On,70141,TS3-2,EC3,070,live
+I:0/14,5069-IB16,1,Local:1:I.Pt14.Data,CR3211_I,CR3211,Lower Row Slave 2 Lamp Is On,70151,TS3-3,EC3,070,live
+I:0/15,5069-IB16,1,Local:1:I.Pt15.Data,CR3207,CR3207,Lower Row System Health,70161,TS3-4,EC3,070,live
+O:1/00,5069-OB16,2,Local:2:O.Pt00.Data,CR3202_O,CR3202,Upper Row Master Lamp Enable,71011,TS2-5,EC2,071,live
+O:1/01,5069-OB16,2,Local:2:O.Pt01.Data,CR3204_O,CR3204,Upper Row Slave 1 Lamp Enable,71021,TS2-6,EC2,071,live
+O:1/02,5069-OB16,2,Local:2:O.Pt02.Data,CR3205_O,CR3205,Upper Row Slave 2 Lamp Enable,71031,TS2-7,EC2,071,live
+O:1/03,5069-OB16,2,Local:2:O.Pt03.Data,CR3208_O,CR3208,Lower Row Master Lamp Enable,71041,TS3-5,EC3,071,live
+O:1/04,5069-OB16,2,Local:2:O.Pt04.Data,CR3210_O,CR3210,Lower Row Slave 1 Lamp Enable,71051,TS3-6,EC3,071,live
+O:1/05,5069-OB16,2,Local:2:O.Pt05.Data,CR3211_O,CR3211,Lower Row Slave 2 Lamp Enable,71061,TS3-7,EC3,071,live
+O:1/06,5069-OB16,2,Local:2:O.Pt06.Data,LT7107,LT7107,Stack Light Green - Running,71071,TS1-5,EC1,071,live
+O:1/07,5069-OB16,2,Local:2:O.Pt07.Data,LT7108,LT7108,Stack Light Amber - Warning,71081,TS1-6,EC1,071,live
+O:1/08,5069-OB16,2,Local:2:O.Pt08.Data,LT7109,LT7109,Stack Light Red - Faulted,71091,TS1-7,EC1,071,live
+O:1/09,5069-OB16,2,Local:2:O.Pt09.Data,HN7110,HN7110,Warning Horn,71101,TS1-8,EC1,071,live
+O:1/10,5069-OB16,2,Local:2:O.Pt10.Data,VFD_CONV,VFD-CONV,Conveyor Drive Run Enable,72011,TS4-5,EC4,072,live
+O:1/11,5069-OB16,2,Local:2:O.Pt11.Data,VFD_FOCA,VFD-FOCA,Focal Lift A Run Enable,72021,TS4-6,EC4,072,live
+O:1/12,5069-OB16,2,Local:2:O.Pt12.Data,VFD_FOCB,VFD-FOCB,Focal Lift B Run Enable,72031,TS4-7,EC4,072,live
+O:1/13,5069-OB16,2,Local:2:O.Pt13.Data,VFD_RECIP,VFD-RECIP,Reciprocator Run Enable,72041,TS4-8,EC4,072,live
+O:1/14,5069-OB16,2,Local:2:O.Pt14.Data,CR3115,CR3115,Safety Circuit Reset Lamp,72051,TS4-9,EC4,072,live
+O:1/15,5069-OB16,2,Local:2:O.Pt15.Data,,SPARE15,Spare,72061,TS1-9,EC1,072,spare
+O:1/16,5069-OB16,2,,,SPARE16,Spare,72071,TS1-10,EC1,072,does not exist on module
+AI:2/00,5069-IF8,3,Local:3:I.Ch00.Data,FT7300,FT7300,Conveyor Encoder Feedback,73011,TS1-11,EC1,073,live
+AI:2/01,5069-IF8,3,Local:3:I.Ch01.Data,PT7301,PT7301,Focal Height Position,73021,TS4-10,EC4,073,live
+AO:3/00,5069-OF4,4,Local:4:O.Ch00.Data,SC7401,SC7401,Upper Row Lamp Intensity Setpoint,74011,TS2-8,EC2,074,live
+AO:3/01,5069-OF4,4,Local:4:O.Ch01.Data,SC7402,SC7402,Lower Row Lamp Intensity Setpoint,74021,TS3-8,EC3,074,live
+AO:3/02,5069-OF4,4,Local:4:O.Ch02.Data,SC7403,SC7403,Conveyor Speed Reference,74031,TS4-11,EC4,074,live
+AO:3/03,5069-OF4,4,Local:4:O.Ch03.Data,SC7404,SC7404,Reciprocator Speed Reference,74041,TS4-12,EC4,074,live
+AI:2/02,5069-IF8,3,Local:3:I.Ch02.Data,,SPAREAI2,Spare analog input,73031,TS1-12,EC1,073,spare
+AI:2/03,5069-IF8,3,Local:3:I.Ch03.Data,,SPAREAI3,Spare analog input,73041,TS1-13,EC1,073,spare

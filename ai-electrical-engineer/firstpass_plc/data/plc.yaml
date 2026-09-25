@@ -1,0 +1,41 @@
+# FMM3013 PLC program settings. Read by build/gen_plc.py together with
+# io.csv, drives.csv, lamps.csv and safety.csv.
+#
+# Every number is tagged with where it came from:
+#   O&M      the FMM3013 Operation and Maintenance Manual, Rev A
+#   io.csv   the I/O list
+#   ASSUMED  a sensible starting value that must be confirmed at commissioning
+#            and recorded on the commissioning sheet (O&M section 7)
+
+program:    FMM3013           # Studio 5000 program name
+controller: FMM3013_PLC       # controller name used in the L5X context
+
+io:
+  # io.csv numbers the modules from 0 (I:0, O:1, AI:2, AO:3). On the 5069
+  # CompactLogix local bus the controller is slot 0, so module 0 is Local:1.
+  local_slot_offset: 1
+
+timers_ms:
+  horn_prewarn:          3000    # O&M 4.2 step 7 - horn sounds 3 s before first motion
+  lamp_cooldown:       300000    # O&M 4.3 step 2 - blowers hold 5 minutes after lamp off
+  lamp_strike_timeout:  10000    # ASSUMED - lamp-is-on must make within 10 s of enable
+  lamp_strike_stagger:   1000    # ASSUMED - one module per second to limit strike inrush
+  lamp_warmup:          60000    # ASSUMED - O&M says "allow the warm-up period", no figure given
+  row_health_timeout:   10000    # ASSUMED - row system-health relay must make within 10 s
+  part_transit_max:     30000    # ASSUMED - longest time between exits before a jam is declared
+  focal_move_timeout:   20000    # ASSUMED - longest focal lift move before a fault
+  conveyor_motion_check: 3000    # ASSUMED - belt feedback must show motion within 3 s of run
+  flash_period:          1000    # 1 Hz flasher for the reset lamp and amber light
+
+analog:
+  ao_full_scale_volts:    10.0   # io.csv - all analog outputs are 0-10 V
+  focal_deadband_mm:       1.0   # ASSUMED - focal lift "in position" band, +/- mm
+  conveyor_min_feedback_pct: 5.0 # ASSUMED - FT7300 below this while running = no motion
+  jog_speed_pct:          20.0   # ASSUMED - manual jog speed, percent of full speed
+
+hmi_defaults:
+  upper_intensity_pct:   100.0   # recipe value, set per product (O&M 4.2 step 5)
+  lower_intensity_pct:   100.0
+  conveyor_speed_pct:     50.0
+  recip_speed_pct:        50.0
+  focal_height_sp_mm:    100.0

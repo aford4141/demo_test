@@ -8,6 +8,10 @@ engineer C. Pleasant, American Ultraviolet, Lebanon, IN).
 This machine is the **quality target** for the drawing pipeline: our generated
 packages should look and read like this one.
 
+Not to be confused with the **FirstPass FMM3013** (drawing FP010021, 5069-L306ER with 5069
+I/O, in Google Drive under *Panel Business / FMM3013 Package*). That is the business's own
+re-engineered design, and the PLC program builder in `firstpass_plc/` is built from its data.
+
 ## 1. What the machine is
 
 A UV-curing conveyor: parts ride a conveyor belt under two rows of high-power UV

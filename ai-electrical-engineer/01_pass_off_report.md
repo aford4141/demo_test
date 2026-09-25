@@ -1,19 +1,19 @@
 # Pass-Off Report — AI Electrical Engineer Project
 
-**Date:** September 23, 2026
-**Prepared for:** Alan Ford and any AI assistant continuing this work
+**Date:** September 23, 2026 (updated September 25, 2026 — see section 7)
+**Prepared for:** A. Ford (the owner) and any AI assistant continuing this work
 **Read `START_HERE.md` first for orientation.**
 
 ---
 
 ## 1. What this project is trying to do
 
-Build an AI-driven system for Alan's panel business that can:
+Build an AI-driven system for the panel business that can:
 
 1. **Produce complete electrical drawing packages** (title sheets, power distribution,
    control wiring, PLC I/O sheets, panel layouts with BOMs, terminal strip details)
    at the quality of a professional controls house — with minimal manual effort.
-2. **Program PLCs** — starting with Alan learning the tools, working toward the
+2. **Program PLCs** — starting with the owner learning the tools, working toward the
    business delivering real PLC programs.
 
 The quality target is a real as-built package: American Ultraviolet's **FMM3013
@@ -83,28 +83,71 @@ tool; Mac virtualization of these programs is unreliable.
 | Keep local Mac Mini in the loop | Runs the renderer, templates, and parts database; no AI needed for that half. |
 | Learn PLC on simulators before touching real machines | The example machine is 230 V / 115 A UV equipment — never experiment live. |
 
-## 5. What has NOT been done yet (next steps, in order)
+## 5. Next steps, in order
 
-1. **Collect the "Brad files"** (drawing templates started in another chat) into this
-   folder under `templates/`.
-2. **Build the first renderer:** Python + ezdxf script that takes a small JSON wire
-   list and outputs one title-blocked schematic sheet matching the AUV sheet format.
-   (Detailed spec in `05_drawing_pipeline_plan.md`.)
-3. **Build the parts database:** start a spreadsheet of real parts used in FMM3013
-   (breakers, contactors, terminal blocks, VFDs — see the BOM extracts in
-   `02_machine_reference_FMM3013.md`) with manufacturer part numbers and prices.
-4. **PLC learning start:** download Do-more Designer, run the built-in simulator,
-   write a first start/stop ladder program (guide in `04_plc_software_guide.md`).
-5. Longer term: define a standard "machine description" input format so any LLM can
-   take a customer request → structured machine description → drawing package.
+Section 5 of the first version of this report said to build a drawing renderer from
+scratch. That was wrong: it had already been built in another chat as the **FirstPass
+Builder** (Google Drive, *Panel Business / FMM3013 Package*). It generates the FMM3013
+drawings, O&M manual and cost model from one `data/` folder. See section 7 for what that
+changed.
+
+1. **Answer the 8 design questions** in `firstpass_plc/plc/FMM3013_PLC_Report.md` and fix
+   them in the FirstPass `data/` folder, so the drawings, manual and PLC program change together.
+2. **First Studio 5000 import** of `firstpass_plc/plc/FMM3013_Program.L5X` on a bench PLC or
+   the Studio 5000 emulator. This is the acceptance test for the L5X format.
+3. **Seed the parts library** (FirstPass roadmap step "NOW"): a Kirby quote or ProposalWorks
+   export gives real prices, DIN widths and watts.
+4. **PLC learning:** download Do-more Designer, run its simulator, write a start/stop rung
+   (see `04_plc_software_guide.md`). Then read `FMM3013_Ladder.md`; every rung there has a
+   plain-English comment.
+5. **Next machine:** run the PLC builder on another package in Drive (FMM3020/3021/3050/3060)
+   once its FirstPass `data/` exists. Most of the rules should carry over.
 
 ## 6. How to use this folder as an AI assistant
 
 - Treat `02_machine_reference_FMM3013.md` as ground truth about the example machine;
   it was extracted from the actual as-built drawings.
-- When Alan asks for drawings or PLC help, follow the decided architecture — don't
+- When the owner asks for drawings or PLC help, follow the decided architecture — don't
   reopen settled decisions (listed in `START_HERE.md`) without new information.
-- Keep language simple and practical. Alan is hands-on and learning as he goes;
+- Keep language simple and practical. The owner is hands-on and learning as they go;
   explain terms the first time they appear.
 - When you add or learn something important, write it into these files (and mirror
   between Google Drive and GitHub) so the next assistant starts where you finished.
+
+## 7. Update — September 25, 2026: PLC program builder, tested on the FMM3013
+
+**What exists now.** `firstpass_plc/` is a PLC program builder that plugs into FirstPass.
+It reads the same job `data/` files as the drawings (`io.csv`, `lamps.csv`, `drives.csv`,
+`safety.csv`, `project.yaml`) plus one new file, `plc.yaml`, for timers and setpoints.
+From those it produces a Studio 5000 L5X program, a ladder listing, an I/O map, an HMI tag
+list and a build report. Run it with `python3 build/build_plc.py`.
+
+**How it was tested on the FMM3013.**
+- The ladder is run scan by scan in a simulator (`build/ladder_sim.py`) against a plant model
+  of the machine.
+- 22 tests each check one piece of the O&M sequence of operation: strike, cooldown, horn,
+  E-stop recovery, cycle stop, part-left check, jam, focal lift, jog, and so on.
+- On every scan the simulator also checks safety invariants, for example "nothing moves or
+  lights without SafetyOK".
+- To prove the tests are real, 12 bugs were planted in the program one at a time. The tests
+  caught all 12. The first run caught only 10, which exposed two missing tests; both were added.
+
+**Result:** 160 rungs, 135 tags, 20 alarms. All gates pass and 22 of 22 tests pass. The L5X
+has not yet been imported into a real Studio 5000.
+
+**What the test run found in the FMM3013 design** (details in the report):
+- O:1/16 is listed on a 16-point output card that only has points 0-15.
+- Six relays (CR3202 and others) are each both a lamp-enable output and a "lamp is on" input,
+  so a lamp that fails to strike may be undetectable.
+- The O&M manual requires an exhaust interlock, but no exhaust input exists.
+- The focal lift has run enables but no direction output.
+- The conveyor encoder is listed as a 4-20 mA analog input while the high-speed counter card
+  on the BOM has nothing on it.
+- The drawings say "speed ref EtherNet/IP" but `io.csv` wires analog speed references.
+- The reciprocator has no home input.
+- The PLC cannot tell the HMI which E-stop or door tripped.
+
+**Where the AI fits** (matches the FirstPass roadmap): an AI read the O&M manual and drawings,
+wrote the rules (`build/plc_rules.py`) and the audit, and wrote the tests. The generator itself
+is deterministic. Change the data, rebuild, and the program, tests and report follow.
+

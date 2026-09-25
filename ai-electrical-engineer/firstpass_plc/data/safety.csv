@@ -1,0 +1,12 @@
+tag,description,device,type,channels,zone,panel,wire,sheet
+ES7001,E-Stop - Operator Station,22mm 2NC mushroom,estop,2,All,EC1,50011,050
+ES7002,E-Stop - Entry End,22mm 2NC mushroom,estop,2,All,EC1,50021,050
+ES7003,E-Stop - Exit End,22mm 2NC mushroom,estop,2,All,EC1,50031,050
+GS7010,Upper Lamp Access Door,Keyence GS-M series interlock,interlock,2,Upper,EC2,50041,050
+GS7011,Lower Lamp Access Door,Keyence GS-M series interlock,interlock,2,Lower,EC3,50051,050
+GS7012,Drive Compartment Door,Keyence GS-M series interlock,interlock,2,Drives,EC4,50061,050
+GC-S1R,Safety Controller,Keyence GC-S1R,controller,-,All,EC4,50071,050
+CR3112,Safety Relay 1,Force-guided 4NO 2NC,relay,2,All,EC4,50081,050
+CR3113,Safety Relay 2,Force-guided 4NO 2NC,relay,2,All,EC4,50091,050
+KM3110,Safety Contactor - Lamp Power,38 A 24 VDC coil mirrored aux,contactor,2,Lamps,EC1,50101,050
+PB7015,Safety Reset - Momentary,22mm NO illuminated,reset,1,All,EC1,50111,050
